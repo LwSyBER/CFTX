@@ -3,6 +3,12 @@ This repository contains the code and data associated to the publication XXX.
 It allows to reproduce the figures of the paper and plot that data of each plate. 
 As an active learning code, this code was designed to be run plate per plate, to feed the machine learning algorithm. You must run the different plates from 0 to 10 to be able to generate a compiled file of all data (corresponding to supplementary table X).
 
+Before running the code, please create an virtual environment as:
+```
+conda env create -f environment.yml
+```
+
+
 # General description of the data
 Each cell-free reaction is performed in a 384-well plate in 10.5 µL and consists of :
 - a fixed quantity of *E. coli* BL21 DE3 cell lysate (3.5 µ)
