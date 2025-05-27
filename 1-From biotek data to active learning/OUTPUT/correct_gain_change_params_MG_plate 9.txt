@@ -1,0 +1,14 @@
+           MG_yield_median              Ref_plus/P0_Ref+
+Buffer             P0_Ref+ P5_Buffer 21                 
+name_plate                                              
+plate 0           1.000000          NaN              NaN
+plate 1           1.000000          NaN              NaN
+plate 2           1.000000          NaN              NaN
+plate 3           1.000000          NaN              NaN
+plate 4           1.000000          NaN              NaN
+plate 5           1.000000     4.231814         4.231814
+plate 6           1.000000     2.892421         2.892421
+plate 7           1.000000     6.952094         6.952094
+plate 8           0.788841     6.952094         8.813053
+Ratio_Refplus_Refplus = 6.952094438470838
+Ratio_Refplus_Refplus_newP = 4.7566052081353 in plate 9
