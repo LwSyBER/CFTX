@@ -1,8 +1,8 @@
 # CFTX (Cell-free transcriptomics)
-This repository contains the code and data associated to the publication XXX. It contains two folders:
-1-From biotek data to active learning: contains the code for making biotek export into a list of yield associated to rach buffer, to feed the machine learning algorithm. 
-2-Active learning: using the output of the previous code, contains the code that trains and runs the machine learning model to suggest new compositions to test in next plate.
-To go from this list of compositions to Echo instructions, see github https://github.com/brsynth/icfree-ml
+This repository contains the code and data associated with the publication XXX. It includes two main folders:
+**1- From Biotek data to active learning** – Contains the code to process Biotek fluorescence exports and convert them into a list of yields associated with each buffer, to be used as input for the machine learning algorithm.
+**2- Active learning** – Uses the output from the previous step to train and run the machine learning model, which suggests new buffer compositions to test in the next experimental plate.
+To convert the list of suggested compositions into Echo-compatible instructions, see the companion repository: https://github.com/brsynth/icfree-ml.
 
 # 1-From biotek data to active learning
 ## General description of the data
@@ -15,12 +15,12 @@ This dataset measures over time :
 - the red fluorescence (590/635 nm) representing the quantity of messenger RNA thanks to the malachite green aptamer encoded on the reporter plasmid
 - the green fluorescence (485/528 nm) representing the quantity of protein thanks to the deGFP encoded on the reporter plasmid
 
-The aim of this experiment was to optimise the buffer for cell-free mRNA production. To achieve this, an active learning algorithm was used to suggest at each iteration (1 plate = 1 iteration) the next most interesting buffer compositions to be tested. The initialization was done by a Latin hypercube sampling algorithm (plate 0), and the active learning corresponds to plates 1 to 10. This result was obtained (20-fold improvement in the mRNA quantity) and in the process we collected a large dataset that could be exploited.
+The aim of this experiment was to optimize the buffer for cell-free mRNA production using an active learning approach. At each iteration (one plate per iteration), the algorithm suggested the most informative buffer compositions to test. The process was initialized using Latin hypercube sampling (plate 0), followed by 10 rounds of active learning (plates 1 to 10). This strategy led to a 20-fold increase in mRNA yield.
 
-A total of 650 different buffer compositions were tested overall:
+A total of 653 different buffer compositions were tested overall:
 ![image](https://github.com/user-attachments/assets/d80b2178-7cbc-4462-8b69-a56bf60c7db6)
 
-## Inputs
+## INPUT
 ### Raw data
 The dataset is provided as .xlsm Excel files, with one file per plate. Each file consists of several sheets:
 - **Data_GFP**: Contains the maximum fluorescence values for GFP in each well, used to track translation over time.
@@ -39,7 +39,7 @@ The “P0_Jove-” and “P0_Jove+” buffers are the negative and positive cont
 ### Additional file
 **Params_concentration_range.csv**: This file is used to generate heatmaps representing the buffer compositions.
 
-## Outputs
+## OUTPUT
 The code provides:
 - **plate X_AL_corr_everything_MG_GFP.csv**: analysed data for the plate X.
   - Each row corresponds to a buffer that is identified by the columns **Buffer** (*e.g.* P5_Buffer 21) and **name_plate** (*e.g.* plate 8).
@@ -56,12 +56,12 @@ The code provides:
   - The yield (normalised fluorescence values) is calculated for each well and given in the columns **GFP_yield_1,	GFP_yield_2,	GFP_yield_3,	GFP_yield_4,	GFP_yield_5,	GFP_yield_6** according to the number of replicates.
   - The median and the standard deviation of these yields values are calculated per buffer in the columns **GFP_yield_median** and	**GFP_yield_std**.
 
-- **P0_P1_P2_P3_PX_AL_corr_everything_MG_GFP.csv**: analysed data for the plate X compiled with all previous data.
+- **PX_AL_corr_everything_MG_GFP.csv**: analysed data for the plate X compiled with all previous data.
   - This file contains the same columns and information as described above, but for all plates together. It allows to plot graphs representing the evolution of MG_yield and GFP_yield between plates.
  
 - **correct_gain_change_params_MG_plate X.txt** for plates 8, 9 and 10 for which the yield is calculated differently to correct for the change of gain of the plate reader.
 
-- **Numerous figures .svg** among which the figures of the paper.
+- **FIGURES (example on plate 10)** among which the figures of the paper.
 
 ## A few subtelties
 ### Experimental biaises and the way there are corrected
